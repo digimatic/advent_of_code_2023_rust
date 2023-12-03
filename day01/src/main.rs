@@ -52,27 +52,12 @@ fn part2() {
     ]);
     let re = Regex::new(r"\d|one|two|three|four|five|six|seven|eight|nine").unwrap();
 
-    let numbersr = HashMap::from([
-        ("eno", 1),
-        ("owt", 2),
-        ("eerht", 3),
-        ("ruof", 4),
-        ("evif", 5),
-        ("xis", 6),
-        ("neves", 7),
-        ("thgie", 8),
-        ("enin", 9),
-        ("0", 0),
-        ("1", 1),
-        ("2", 2),
-        ("3", 3),
-        ("4", 4),
-        ("5", 5),
-        ("6", 6),
-        ("7", 7),
-        ("8", 8),
-        ("9", 9)
-    ]);
+    let mut numbersr: HashMap<String, i32> = HashMap::new();
+    for (s, v) in numbers.iter() {
+        let r = s.chars().rev().collect::<String>();
+        numbersr.insert(r, v.clone());
+    }
+
     let rer = Regex::new(r"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin").unwrap();
     let mut sum = 0;
     for line in lines {
